@@ -8,7 +8,6 @@ public class MainTest {
         testSwapColumns();
     }
 
-
     private static void testSwapColumns() {
 
         int[][] matrix1 = {
@@ -16,10 +15,14 @@ public class MainTest {
             {4, 5, 6},
             {7, 8, 9}
         };
+        System.out.println("Original matrix1:");
+        printMatrix(matrix1);
         Main.swapColumns(matrix1, 0, 2);
-        assert matrix1[0][0] == 3 && matrix1[0][2] == 1 : "Тест 1 не пройдено";
-        assert matrix1[1][0] == 6 && matrix1[1][2] == 4 : "Тест 1 не пройдено";
-        assert matrix1[2][0] == 9 && matrix1[2][2] == 7 : "Тест 1 не пройдено";
+        System.out.println("Matrix1 after swapping columns 0 and 2:");
+        printMatrix(matrix1);
+        assert matrix1[0][0] == 3 && matrix1[0][2] == 1 : "Test 1 failed";
+        assert matrix1[1][0] == 6 && matrix1[1][2] == 4 : "Test 1 failed";
+        assert matrix1[2][0] == 9 && matrix1[2][2] == 7 : "Test 1 failed";
 
 
         int[][] matrix2 = {
@@ -27,10 +30,14 @@ public class MainTest {
             {4, 5, 6},
             {7, 8, 9}
         };
+        System.out.println("Original matrix2:");
+        printMatrix(matrix2);
         Main.swapColumns(matrix2, 1, 1);
-        assert matrix2[0][1] == 2 : "Тест 2 не пройдено";
-        assert matrix2[1][1] == 5 : "Тест 2 не пройдено";
-        assert matrix2[2][1] == 8 : "Тест 2 не пройдено";
+        System.out.println("Matrix2 after swapping columns 1 and 1 (should be unchanged):");
+        printMatrix(matrix2);
+        assert matrix2[0][1] == 2 : "Test 2 failed";
+        assert matrix2[1][1] == 5 : "Test 2 failed";
+        assert matrix2[2][1] == 8 : "Test 2 failed";
 
 
         try {
@@ -38,12 +45,24 @@ public class MainTest {
                 {1, 2},
                 {3, 4}
             };
+            System.out.println("Original matrix3:");
+            printMatrix(matrix3);
             Main.swapColumns(matrix3, 0, 2);
-            assert false : "Тест 3 не пройдено - очікувалось виключення";
+            assert false : "Test 3 failed - expected exception";
         } catch (IllegalArgumentException e) {
-            assert true : "Тест 3 пройдено";
+            System.out.println("Test 3 passed - exception caught as expected");
         }
 
-        System.out.println("Всі тести пройдено!");
+        System.out.println("All tests passed!");
+    }
+
+    private static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int elem : row) {
+                System.out.print(elem + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }
